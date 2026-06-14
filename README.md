@@ -84,6 +84,7 @@ Available themes:
  - Rose Pine Moon
  - Solarized
  - Tokyo Night
+ - One Dark
 ```
 
 #### Custom theme syntax
