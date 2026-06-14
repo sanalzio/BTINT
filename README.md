@@ -1,12 +1,12 @@
-# TINT (Terminal Image Normalizer & Tinter)
+# BTINT (Terminal Image Normalizer & Tinter)
 
-**TINT** (Terminal Image Normalizer & Tinter) replaces the colors of an image with the closest matches from a palette you choose. This lets you easily adapt any image to fit your desired color scheme. It’s built with **Node.js** and is very easy to use.
+**BTINT** (Terminal Image Normalizer & Tinter) replaces the colors of an image with the closest matches from a palette you choose. This lets you easily adapt any image to fit your desired color scheme. It’s built with **Bun runtime** and is very easy to use.
 
-TINT comes with several built-in palettes, but you can also provide your own.
+BTINT comes with several built-in palettes, but you can also provide your own.
 See #Usage below for more information.
 
 > [!NOTE]
-> **TINT** is still in pre-release.
+> **BTINT** is still in pre-release.
 > If you find any bugs, please report them by opening an issue.
 
 ---
@@ -21,14 +21,18 @@ See #Usage below for more information.
 | ------------------------------------ | ------------------------------ | -------------------------------- | --------------------------------- |
 | ![everforest](assets/everforest.png) | ![gruvbox](assets/gruvbox.png) | ![kanagawa](assets/kanagawa.png) | ![rosepine](assets/rose-pine.png) |
 
+| Nord                           | One Dark                        | Solarized                         | Tokyo Night                         |
+| ------------------------------------ | ------------------------------ | -------------------------------- | --------------------------------- |
+| ![nord](assets/nord.png) | ![one-dark](assets/one-dark.png) | ![solarized](assets/solarized.png) | ![tokyonight](assets/tokyo-night.png) |
+
 ---
 
 ## Installation
 
-To install TINT, npm must be installed on your system.
+To install BTINT, npm must be installed on your system.
 
 ```
-sudo npm install -g @xeyossr/tint
+bun i -g @sanalzio/btint
 ```
 
 ---
@@ -36,25 +40,29 @@ sudo npm install -g @xeyossr/tint
 ## Usage
 
 ```bash
-Usage: tint [options]
+Usage: btint [options] [images...]
+
+Arguments:
+  images                   input images
 
 Options:
-  -i, --input <path>       input image path
-  -o, --output <path>      output image path
+  -o, --output <path>      output folder
   -t, --theme <name>       theme name
-  -p, --palette <palette>  custom palette (path to JSON file or flat RGB list)
+  -p, --palette <palette>  custom palette (path to JSON file or flat RGB
+                           list)
   -h, --help               display help for command
 ```
 
 ```bash
 # Apply a theme to an image
-tint -i input.png -o output.png -t "Catppuccin Mocha"
+btint -o output -t "Catppuccin Mocha" input.png input2.jpg
 
 # Use a custom palette (from a file)
-tint -i input.jpg -o output.png -p ./my-palette.json
+btint -o outdir -p ./my-palette.json input.png
 
 # Use a custom palette (inline RGB list)
-tint -i pic.webp -o recolored.png -p "[255,0,0, 0,255,0, 0,0,255]"
+# ! Not supporting other color formats
+btint -o dist -p "[[255,0,0], [0,255,0], [0,0,255]]" pic.webp
 ```
 
 ### Themes
@@ -78,11 +86,27 @@ Available themes:
  - Tokyo Night
 ```
 
+#### Custom theme syntax
+Add colors following [this styles](https://bun.sh/docs/runtime/color#flexible-input)
+
+```json
+{
+    "theme_name": [
+
+        "rgb(255, 0, 0)",
+        "hsl(0, 100%, 50%)",
+        [255, 0, 0],
+        { r: 255, g: 0, b: 0 }
+
+    ]
+}
+```
+
 ---
 
 ## Issues
 
-If you encounter a bug or have a suggestion, please report it via [Issues](https://github.com/xeyossr/TINT/issues).
+If you encounter a bug or have a suggestion, please report it via [Issues](https://github.com/sanalzio/BTINT/issues).
 
 ---
 

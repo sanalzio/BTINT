@@ -1,18 +1,20 @@
 {
-  "name": "@xeyossr/tint",
-  "version": "0.1.2",
+  "name": "@sanalzio/btint",
+  "version": "0.2.0",
   "description": " 🎨 A terminal tool that modifies image colors according to your selected palette, optimizing your visual experience. ",
-  "main": "bin/tint.js",
+  "main": "bin/btint.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "bun build --packages=bundle --target=bun --outfile=./dist/btint.js --minify ./bin/btint.js"
   },
+  "private": false,
+  "categories": ["Other"],
   "bin": {
-    "tint": "./bin/tint.js"
+    "btint": "./dist/btint.js"
   },
   "preferGlobal": true,
   "files": [
-    "bin",
-    "lib",
+    "dist",
     "themes.json"
   ],
   "keywords": [
@@ -22,9 +24,10 @@
     "palette",
     "terminal",
     "CLI",
-    "tint"
+    "tint",
+    "btint"
   ],
-  "author": "xeyossr",
+  "author": "axrona",
   "license": "GPL-3.0",
   "type": "commonjs",
   "dependencies": {

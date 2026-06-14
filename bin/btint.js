@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 const { program } = require("commander");
 const { log, error, setupLogger } = require("../lib/logger");
@@ -11,28 +11,31 @@ const notifier = updateNotifier({ pkg });
 notifier.notify();
 
 program
-    .option("-i, --input <path>", "input image path")
-    .option("-o, --output <path>", "output image path")
+    .option("-o, --output <path>", "output folder")
     .option("-t, --theme <name>", "theme name")
     .option("-p, --palette <palette>", "custom palette (path to JSON file or flat RGB list)")
+    .argument('[images...]', 'input images')
 
 program.parse(process.argv);
 const options = program.opts();
 
-if (!options.input || !options.output) {
+if (!options.output || !program.args || !program.args.length) {
     program.help({ error: true });
 }
 
 
-checkForUpdate(REPO, CURRENT_VERSION, (info) => {
+/*checkForUpdate(REPO, CURRENT_VERSION, (info) => {
     lastUpdateInfo = info;
-});
+});*/
 
-loadThemePalette(options)
-    .then((themePalette) => {
-        processImage(options.input, options.output, themePalette);
-    })
-    .catch(err => {
-        error(err.message);
-        process.exit(1);
-    });
+
+// Safe sync run
+try {
+    const themePalette = await loadThemePalette(options);
+    for (const image of program.args) {
+        processImage(image, options.output, themePalette);
+    }
+} catch (err) {
+    error(err.message);
+    process.exit(1);
+}
