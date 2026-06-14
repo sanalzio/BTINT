@@ -14,6 +14,7 @@ program
     .option("-o, --output <path>", "output folder")
     .option("-t, --theme <name>", "theme name")
     .option("-p, --palette <palette>", "custom palette (path to JSON file or flat RGB list)")
+    .option("-a, --hsl-alg", "Use hue and saturation based coloring algorithm (Slower but better results)")
     .argument('[images...]', 'input images')
 
 program.parse(process.argv);
@@ -33,7 +34,7 @@ if (!options.output || !program.args || !program.args.length) {
 try {
     const themePalette = await loadThemePalette(options);
     for (const image of program.args) {
-        processImage(image, options.output, themePalette);
+        processImage(image, options.output, themePalette, options.hslAlg);
     }
 } catch (err) {
     error(err.message);

@@ -50,6 +50,8 @@ Options:
   -t, --theme <name>       theme name
   -p, --palette <palette>  custom palette (path to JSON file or flat RGB
                            list)
+  -a, --hsl-alg            Use hue and saturation based coloring algorithm
+                           (Slower but better results)
   -h, --help               display help for command
 ```
 
@@ -62,7 +64,7 @@ btint -o outdir -p ./my-palette.json input.png
 
 # Use a custom palette (inline RGB list)
 # ! Not supporting other color formats
-btint -o dist -p "[[255,0,0], [0,255,0], [0,0,255]]" pic.webp
+btint -o dist -p "[[255,0,0], [0,255,0], [0,0,255]]" --hsl-alg pic.webp
 ```
 
 ### Themes

@@ -1,11 +1,13 @@
 {
   "name": "@sanalzio/btint",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": " 🎨 A terminal tool that modifies image colors according to your selected palette, optimizing your visual experience. ",
   "main": "bin/btint.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "bun build --packages=bundle --target=bun --outfile=./dist/btint.js --minify ./bin/btint.js"
+    "build": "bun build --packages=bundle --target=bun --outfile=./dist/btint.js --minify ./bin/btint.js",
+    "publish": "bunx npm publish --access public",
+    "try": "bun ./bin/btint assets/original.png -t \"One Dark\" -o out"
   },
   "private": false,
   "categories": ["Other"],
@@ -15,6 +17,8 @@
   "preferGlobal": true,
   "files": [
     "dist",
+    "bin",
+    "lib",
     "themes.json"
   ],
   "keywords": [
