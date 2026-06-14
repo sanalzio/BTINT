@@ -1,6 +1,6 @@
 {
   "name": "@sanalzio/btint",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": " 🎨 A terminal tool that modifies image colors according to your selected palette, optimizing your visual experience. ",
   "main": "bin/btint.js",
   "scripts": {
@@ -32,6 +32,7 @@
   "type": "commonjs",
   "dependencies": {
     "commander": "^14.0.0",
+    "fs": "^0.0.1-security",
     "get-pixels": "^3.3.3",
     "https": "^1.0.0",
     "ndarray": "^1.0.19",
